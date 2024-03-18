@@ -1,0 +1,54 @@
+.prompot__query-cont {
+  padding-top: 1rem;
+}
+
+.prompot__query-loader {
+  text-align: left;
+  padding: 0.3rem;
+  padding-left: 0.5rem;
+  height: 1.75rem;
+}
+
+.prompot__query-input-cont {
+  position: relative;
+}
+
+.prompot__query-input {
+  background: transparent;
+  color: var(--white);
+  width: 100%;
+  height: 45px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border-light);
+  border-radius: 13px;
+}
+
+.prompot__query-input:focus {
+  outline: none;
+}
+
+.prompot__query-input::placeholder {
+  font-family: "Karla";
+  transition: display 3s ease;
+}
+
+.prompot__query-button {
+  position: absolute;
+  border-radius: 5px;
+  display: flex;
+  padding: 0.4rem;
+  right: 15px;
+  top: 9px;
+  cursor: pointer;
+  background-color: var(--gray-600);
+  color: var(--gray-800);
+  font-size: 13px;
+}
+
+.prompot__query-button--white {
+  background-color: var(--white);
+}
+
+.prompot__query-button--disabled {
+  cursor: not-allowed;
+}

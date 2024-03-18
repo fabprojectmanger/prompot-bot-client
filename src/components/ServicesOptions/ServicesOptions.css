@@ -1,0 +1,41 @@
+.prompot__services {
+  display: grid;
+  gap: 0.5rem;
+  max-width: 17rem;
+}
+
+.prompot__service-option {
+  display: flex;
+  gap: 0.7rem;
+  justify-content: flex-start;
+  align-items: center;
+  height: 50px;
+  white-space: nowrap;
+  cursor: pointer;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--gray-600);
+  border-radius: 0.6rem;
+  transform: translateX(1000%);
+  transition: background-color 0.2s ease, transform 2s ease;
+}
+
+.prompot__service-option:hover {
+  background-color: var(--gray-700);
+}
+
+.prompot__service-option.animated {
+  transform: translateX(0%);
+}
+
+.prompot__service-option.show:not(.animated) {
+  animation: slidein 0.2s forwards;
+}
+
+@keyframes slidein {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
