@@ -1,13 +1,16 @@
-const initiateChat = async (userId, userPrompt, setState, ) => {
+const initiateChat = async (userId, userPrompt, setState) => {
   try {
-    const streamResponse = await fetch("http://localhost:1112/api/chat", {
-      method: "post",
-      headers: {
-        Accept: "application/json, text/plain, */*",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ userPrompt, userId }),
-    });
+    const streamResponse = await fetch(
+      "https://prompot-bot-server.onrender.com/api/chat",
+      {
+        method: "post",
+        headers: {
+          Accept: "application/json, text/plain, */*",
+          "Content-Type": "text/event-stream",
+        },
+        body: JSON.stringify({ userPrompt, userId }),
+      }
+    );
 
     if (!streamResponse.ok || !streamResponse.body) {
       throw streamResponse.statusText;
