@@ -16,10 +16,6 @@ const ServicesOptions = () => {
     []
   );
 
-  useEffect(() => {
-    aiResponse && console.log({ aiResponse });
-  }, [aiResponse]);
-
   // Animation may glitch depending on the following delay and delay in the css
   const DELAY_FOR_OPTIONS_SLIDE_IN = 300;
 

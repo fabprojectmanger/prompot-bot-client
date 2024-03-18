@@ -23,7 +23,6 @@ const QueryInput = () => {
   const [isStreamCompleted, setIsStreamCompleted] = useState(false);
 
   useEffect(() => {
-    console.clear();
     console.log({ userId });
   }, [userId]);
 
@@ -37,7 +36,6 @@ const QueryInput = () => {
   }, [isStreamCompleted, aiResponse]);
 
   useEffect(() => {
-    optionsSelected && console.log({ optionsSelected });
     if (isTyping) {
       setPlaceholderText("Generating a response...");
     } else {
