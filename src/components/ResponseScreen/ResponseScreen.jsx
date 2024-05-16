@@ -1,7 +1,7 @@
 import "./ResponseScreen.css";
 import ServicesOptions from "../ServicesOptions/ServicesOptions";
 import { useChatContext } from "../../context/ChatContext";
-import { RestartRobot } from "../../assets/images";
+import RestartRobot from "../../assets/images/restart-robot.gif";
 
 const ResponseScreen = () => {
   const { aiResponse, optionsSelected, restartRequired } = useChatContext();

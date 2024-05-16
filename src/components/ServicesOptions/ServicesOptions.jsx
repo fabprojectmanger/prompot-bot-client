@@ -1,28 +1,22 @@
 import "./ServicesOptions.css";
 import SERVICES from "../../constants/services-provider.js";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useChatContext } from "../../context/ChatContext.jsx";
 import useTimeout from "../../hooks/useTimeout.jsx";
 
 const ServicesOptions = () => {
-  const { setOptionsSelected, setIsInputDisabled, setIsTyping, aiResponse } =
-    useChatContext();
+  const { setOptionsSelected, setIsInputDisabled, setIsTyping } = useChatContext();
 
   const [selectedService, setSelectedService] = useState();
   const [categoryIndexToShow, setCategoryIndexToShow] = useState(0);
   const [animatedCategoryIndexes, setAnimatedCategoryIndexes] = useState([]);
   const [subCategoryIndexToShow, setSubCategoryIndexToShow] = useState(0);
-  const [animatedSubCategoryIndexes, setAnimatedSubCategoryIndexes] = useState(
-    []
-  );
+  const [animatedSubCategoryIndexes, setAnimatedSubCategoryIndexes] = useState([]);
 
   // Animation may glitch depending on the following delay and delay in the css
   const DELAY_FOR_OPTIONS_SLIDE_IN = 300;
 
-  useTimeout(updateCategoryIndexes, DELAY_FOR_OPTIONS_SLIDE_IN, [
-    categoryIndexToShow,
-    setIsTyping,
-  ]);
+  useTimeout(updateCategoryIndexes, DELAY_FOR_OPTIONS_SLIDE_IN, [categoryIndexToShow, setIsTyping]);
 
   useTimeout(updateSubCategoryIndexes, DELAY_FOR_OPTIONS_SLIDE_IN, [
     selectedService,
@@ -43,10 +37,7 @@ const ServicesOptions = () => {
   useTimeout(
     () => {
       const index = subCategoryIndexToShow - 1;
-      if (
-        !animatedSubCategoryIndexes.includes(index) &&
-        subCategoryIndexToShow
-      ) {
+      if (!animatedSubCategoryIndexes.includes(index) && subCategoryIndexToShow) {
         setAnimatedSubCategoryIndexes((prevIndexes) => [...prevIndexes, index]);
       }
     },
@@ -65,10 +56,7 @@ const ServicesOptions = () => {
   }
 
   function updateSubCategoryIndexes() {
-    if (
-      selectedService &&
-      subCategoryIndexToShow <= selectedService?.options?.length
-    ) {
+    if (selectedService && subCategoryIndexToShow <= selectedService?.options?.length) {
       setIsTyping(true);
       setSubCategoryIndexToShow((prevIndex) => prevIndex + 1);
       if (subCategoryIndexToShow >= selectedService.options.length) {
@@ -95,8 +83,7 @@ const ServicesOptions = () => {
           <div
             className={`prompot__service-option 
             ${
-              categoryIndexToShow >= index &&
-              !animatedCategoryIndexes.includes(index)
+              categoryIndexToShow >= index && !animatedCategoryIndexes.includes(index)
                 ? "show "
                 : ""
             }
@@ -127,25 +114,22 @@ const ServicesOptions = () => {
   const ServiceSubCategory = () => {
     return (
       <>
-        {selectedService.options
-          ?.slice(0, subCategoryIndexToShow)
-          .map((service, index) => (
-            <div
-              className={`prompot__service-option 
+        {selectedService.options?.slice(0, subCategoryIndexToShow).map((service, index) => (
+          <div
+            className={`prompot__service-option 
             ${
-              subCategoryIndexToShow >= index &&
-              !animatedSubCategoryIndexes.includes(index)
+              subCategoryIndexToShow >= index && !animatedSubCategoryIndexes.includes(index)
                 ? "show "
                 : ""
             }
             ${animatedSubCategoryIndexes.includes(index) ? "animated" : ""}`}
-              onClick={() => handleServiceSubCategorySelection(index)}
-              key={index}
-              style={{ justifyContent: "center" }}
-            >
-              {service.subCategory}
-            </div>
-          ))}
+            onClick={() => handleServiceSubCategorySelection(index)}
+            key={index}
+            style={{ justifyContent: "center" }}
+          >
+            {service.subCategory}
+          </div>
+        ))}
       </>
     );
   };
